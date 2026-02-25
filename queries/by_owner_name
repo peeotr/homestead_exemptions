@@ -1,0 +1,11 @@
+select
+    "Owner Name 1",
+    count("Owner Name 1") as total,
+    group_concat("Tax Code") as tax_codes,
+    group_concat(distinct "Billing Address 1") as billing_address_1,
+    group_concat(distinct "Billing Address 2") as billing_address_2
+from "year"
+where "Owner Occupied Exemption" is not null and "Owner Occupied Exemption" is 6000
+group by "Owner Name 1"
+having total > 1
+order by total desc
