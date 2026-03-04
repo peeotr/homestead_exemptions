@@ -7,10 +7,11 @@ The `tax_data` database is *not* included. You will need to build it with the in
 
 To set up the database:
 
-> `cd data`
-> 
-> `python construct_db.py`
+```
+cd data
+python construct_db.py
+```
 
 Get some numbers with:
 
-> `python get_numbers.py`
+```python get_numbers.py```
