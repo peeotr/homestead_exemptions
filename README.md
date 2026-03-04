@@ -9,7 +9,7 @@ To set up the database:
 
 ```
 cd data
-python construct_db.py
+python scripts/construct_db.py
 ```
 
 Get some numbers with:
