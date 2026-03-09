@@ -44,7 +44,6 @@ def get_median_element(sorted_list):
         return ((sorted_list[length // 2 - 1] + sorted_list[length // 2]) / 2)
     return sorted_list[length // 2]
 
-
 def tally_deductions_by_distinct(query_path, year):
     property_rates_dict = exchange_query_tax_codes_for_rates(query_path, year)
     updated = {
@@ -82,18 +81,23 @@ def clean_row(csv_list):
             row[index] = "0" + entry
     return row
 
+by_owner_name_old = "./queries/by_owner_name_old"
 by_owner_name = "./queries/by_owner_name"
 
-for year in range(2023, 2026):
+for year in range(2020, 2026):
+    query = by_owner_name
+    if (year <= 2022):
+        query = by_owner_name_old
+
     year_str = str(year)
     print(year_str)
-    owner_count, total_exemptions = count_exemptions(by_owner_name, year_str)
+    owner_count, total_exemptions = count_exemptions(query, year_str)
     print("owner_count: " + str(owner_count), "exemption_count: " + str(total_exemptions))
-    print("median savings per person: " + str(get_median_savings(by_owner_name, year_str)))
+    print("median savings per person: " + str(get_median_savings(query, year_str)))
 
-    total = sum_deductions(by_owner_name, year_str)
+    total = sum_deductions(query, year_str)
     print("total savings: ", str(round(total, 2)), "\n")
 
     print("top 10 savers:")
-    pprint(get_sorted_savings(by_owner_name, year_str)[:10])
+    pprint(get_sorted_savings(query, year_str)[:10])
     print("")
