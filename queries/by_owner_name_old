@@ -1,0 +1,13 @@
+select
+    case
+        when owner_first_name is not null and owner_first_name <> ''
+        then concat(owner_last_name, ', ', owner_first_name)
+        else owner_last_name
+    end as name,
+    count(owner_name_id) as owner_count,
+    group_concat("tax_code") as tax_codes
+from "{year}"
+where hel_exemption = '6000'
+group by name
+having owner_count > 1
+order by owner_count desc
