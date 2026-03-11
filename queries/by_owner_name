@@ -1,6 +1,6 @@
 select
-    "Owner Name 1" as name,
-    count("Owner Name 1") as owner_count,
+    replace("Owner Name 1", ', LLC', ' LLC') as name,
+    count("*") as owner_count,
     group_concat("Tax Code") as tax_codes
 from "{year}"
 where "Owner Occupied Exemption" = '6000'
